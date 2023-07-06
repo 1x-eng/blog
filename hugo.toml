@@ -20,4 +20,4 @@ theme = "m10c"
   [[params.social]]
     icon = "layers"
     name = "Stackoverflow"
-    url = " https://stackoverflow.com/users/10019687/pruthvi-kumar"
+    url = "https://stackoverflow.com/users/10019687/pruthvi-kumar"
