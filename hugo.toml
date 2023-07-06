@@ -1,11 +1,11 @@
 baseURL = "https://1x-eng.github.io/blog/"
 languageCode = "en-us"
-title = "A Dystopian Journey into the Heart of Tech"
+title = "a dystopian journey into the heart of tech"
 theme = "m10c"
 
 [params]
   author = "Pruthvi Kumar"
-  description = "Confessions of a Serial Key Puncher: The Life and Times of a Coder."
+  description = "confessions of a serial key puncher: the life and times of a coder."
 
   [[params.social]]
     icon = "github"
