@@ -16,3 +16,10 @@ theme = "m10c"
     icon = "linkedin"
     name = "Linkedin"
     url = "https://au.linkedin.com/in/iampruthvi"
+
+  [[params.social]]
+    icon = "stackoverflow"
+    name = "stackoverflow"
+    url = " https://stackoverflow.com/users/10019687/pruthvi-kumar"
+
+
