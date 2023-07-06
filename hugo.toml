@@ -18,6 +18,6 @@ theme = "m10c"
     url = "https://au.linkedin.com/in/iampruthvi"
 
   [[params.social]]
-    icon = "stackoverflow"
-    name = "Layers"
+    icon = "layers"
+    name = "Stackoverflow"
     url = " https://stackoverflow.com/users/10019687/pruthvi-kumar"
