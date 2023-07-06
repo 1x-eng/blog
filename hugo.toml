@@ -1,3 +1,18 @@
-baseURL = 'http://example.org/'
-languageCode = 'en-us'
-title = 'My New Hugo Site'
+baseURL = "https://1x-eng.github.io/blog/"
+languageCode = "en-us"
+title = "A Dystopian Journey into the Heart of Tech"
+theme = "m10c"
+
+[params]
+  author = "Pruthvi Kumar"
+  description = "Confessions of a Serial Key Puncher: The Life and Times of a Coder."
+
+  [[params.social]]
+    icon = "github"
+    name = "GitHub"
+    url = "https://github.com/1x-eng"
+
+  [[params.social]]
+    icon = "linkedin"
+    name = "Linkedin"
+    url = "https://au.linkedin.com/in/iampruthvi"
