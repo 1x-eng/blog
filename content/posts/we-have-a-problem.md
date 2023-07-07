@@ -10,7 +10,7 @@ Many factors lead to ineffective software development: from the tools used, to t
 
 Let me double click on the last part - `non-existent problems`. Most complicated or broken software is not designed to be overly complex or dysfunctional. It’s just designed to do something other than its intended purpose.
 
-Consider a situation where you are a `<fancy title here>` developer working in a media company that runs a podcasting platform. They need a custom backend system that can handle the delivery of music albums, videos, and blogs, generate advertising revenue, and sell promotional products.
+Consider a situation where you are a `<fancy title here>` developer working in a media company that runs a music streaming platform. They need a custom backend system that can handle the delivery of music albums, videos, and blogs, generate advertising revenue, and sell promotional products.
 
 The system's requirements might include:
 
