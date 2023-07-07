@@ -6,7 +6,7 @@ draft: false
 
 # Database is Sacred: An "Engineer's" Testament
 
-What does the word 'database' make you think? It's probably difficult to generalise, but I'm guessing a good chunk would think of a 'relational' flavor? Well, there is no short of 'flavors' amongst databases today and I feel like talking about 'relational' (or *vent* about how often relational databases are used against their potential) today. 
+What does the word 'database' make you think of? It's probably difficult to generalize, but I'm guessing a good chunk of you would think of a 'relational' flavor. Well, there's no shortage of 'flavors' among databases today, and I feel like talking — or venting — about how often relational databases are used beneath their potential today
 
 ## (Relational) Databases are awesome
 
