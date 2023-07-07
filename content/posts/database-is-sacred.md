@@ -663,7 +663,7 @@ Full-text search is a technique for searching text content. It goes beyond the c
 
 
 ## Conclusion
-Well, firstly, that was a bit of a brain dump & a completion of venting session 😤 
+Well, firstly, that was a bit of a brain dump & the completion of a venting session 😤 
 
 Embracing Database-Driven Development means seeing your database as more than a storage system — it's a high-performance engine for data processing, a gatekeeper of your business logic, a time machine through your application's history, and much more. Database-driven development encourages you to tap into the full potential of your database system, be it PostgreSQL or any other robust RDBMS. From harnessing the power of SQL, migrations, and stored procedures to mastering the art of performance monitoring and optimization, DbDD encompasses a wide spectrum of practices and concepts that, when used correctly, can elevate your application architecture significantly.
 
