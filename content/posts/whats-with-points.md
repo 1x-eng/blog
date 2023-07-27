@@ -33,7 +33,7 @@ So, the outcome is some sorta key-value pairs, where every task has 'points' and
 
 And, at the end of every sprint the objective is to look at the tasks that were delivered, they add up the number of the points of each task, and end up with a single number. This number represents how "fast" the team is going. It's a single number that represents all the team's work over a few months, and this number can be used to measure whether the team speeds up or slows down. Its often also used to compare performance of individual developers, to see who's driving the team's performance and who's lagging behind. Magic ✨ right?
 
-... Well, absolute 💩. Velocity can provide value, but the way it's often used by Agile aficionados and inexperienced managers ruins the value of this metric. Why am I the antagonist here? Becuase:
+... Well, absolute 💩. Velocity can provide value, but the way it's often used by Agile aficionados and inexperienced managers ruins the value of this metric. Why am I the antagonist here? Bacause:
 
 ### 🕞 My time !== Your time 
 
