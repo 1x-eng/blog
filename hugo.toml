@@ -2,11 +2,14 @@ baseURL = "https://1x-eng.github.io/blog/"
 languageCode = "en-us"
 title = "a dystopian journey into the heart of tech"
 theme = "m10c"
+enableEmoji = true
+googleAnalytics = "G-0Q0C7S8K6Z"
 
 [params]
   author = "Pruthvi Kumar"
   description = "confessions of a serial key puncher: the life and times of a coder."
-  googleAnalytics = "G-0Q0C7S8K6Z"
+  enableEmoji = true
+  enableMetaTags = true
 
   [[params.social]]
     icon = "github"
