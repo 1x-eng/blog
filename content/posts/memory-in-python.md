@@ -1,9 +1,9 @@
 ---
-title: "Oh, Python is slow? Sure, keep blaming the language like the rest of the herd — But if your code’s leaky and crawling, Spoiler: it’s you, not the language."
+title: "Oh, Python is slow?"
 date: 2024-04-14T12:19:45+10:00
 draft: false
 ---
-# Oh, Python is slow? Sure, keep blaming the language like the rest of the herd — But if your code's leaky and crawling, Spoiler: it's you, not the language.
+Sure, keep blaming the language like the rest of the herd — But if your code’s leaky and crawling, Spoiler: it’s you, not the language😏
 
 Ah, another day, another developer blaming Python for their code's sluggish performance. 🐌 Before you join the chorus of the uninformed, let's embark on a journey through the labyrinthine world of Python's memory management.
 
