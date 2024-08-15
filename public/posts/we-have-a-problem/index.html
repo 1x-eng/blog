@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en-us">
+  <head><script src="/blog/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=blog/livereload" data-no-instant defer></script>
+    <title>We Have a Problem // a dystopian journey into the heart of tech</title>
+    <meta charset="utf-8" />
+    <meta name="generator" content="Hugo 0.132.1">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="Pruthvi Kumar" />
+    <meta name="description" content="" />
+    
+    <link rel="stylesheet" href="/blog/css/main.min.5b1fcc8902588589c4767187402a3c29f8b8d7a6fdef6d9f8f77045bb0d14fee.css" />
+
+    
+        
+        <link rel="stylesheet" href="/blog/css/custom.min.a1c16b97fbe8a2fd96bb78a6a5a8ebb79f1b65243c35465b41c2deefc53f5614.css" integrity="sha256-ocFrl/voov2Wu3impajrt58bZSQ8NUZbQcLe78U/VhQ=" crossorigin="anonymous">
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', (event) => {
+        console.log("DOM fully loaded and parsed");
+        if(typeof mermaid !== 'undefined') {
+          console.log("Mermaid found, initializing...");
+          mermaid.initialize({ 
+            startOnLoad: true,
+            theme: 'dark',
+            themeVariables: {
+            darkMode: true,
+            background: '#2d2d2d',
+            primaryColor: '#ff9800',
+            secondaryColor: '#2196f3',
+            tertiaryColor: '#4caf50',
+            primaryTextColor: '#fff',
+            secondaryTextColor: '#ddd',
+            lineColor: '#999',
+            textColor: '#fff',
+            mainBkg: '#2d2d2d',
+            nodeBorder: '#7f7f7f',
+            clusterBkg: '#3d3d3d',
+            clusterBorder: '#888',
+            titleColor: '#f8f8f2'
+            }
+        });
+        } else {
+          console.error("Mermaid not found!");
+        }
+      });
+    </script>
+  </head>
+  <body>
+    <header class="app-header">
+      <a href="http://localhost:1313/blog/"><img class="app-header-avatar" src="/blog/avatar.jpg" alt="Pruthvi Kumar" /></a>
+      <span class="app-header-title">a dystopian journey into the heart of tech</span>
+      <p>confessions of a serial key puncher: the life and times of a coder.</p>
+    </header>
+    <main class="app-container">
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class ="post-title">We Have a Problem</h1>
+      <div class="post-meta">
+        <div>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <title>calendar</title>
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+          Apr 10, 2022
+        </div>
+        <div>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
+  <title>clock</title>
+  <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
+</svg>
+          6 min read
+        </div>
+      </div>
+    </header>
+    <div class="post-content">
+      <h1 id="the-reality-of-imaginary-problems---in-the-context-of-software">The Reality of Imaginary Problems - In the context of Software</h1>
+<p>Many factors lead to ineffective software development: from the tools used, to team communication, to the personal motivation of developers, the testing approach to the organisational leadership matrix. Among these, there&rsquo;s a fundamental issue that often results in poorly conceived software: chasing perceived or, more often than not, non-existent problems, that take shape through the process to prove some kinda relevance by one or many involved directly or indirectly in the process.</p>
+<p>Let me double click on the last part - <code>non-existent problems</code>. Most complicated or broken software is not designed to be overly complex or dysfunctional. It’s just designed to do something other than its intended purpose.</p>
+<p>Consider a situation where you are a <code>&lt;fancy title here&gt;</code> developer working in a media company that runs a music streaming platform. They need a custom backend system that can handle the delivery of music albums, videos, and blogs, generate advertising revenue, and sell promotional products.</p>
+<p>The system&rsquo;s requirements might include:</p>
+<ol>
+<li>Quick server response times in <code>&lt;a region&gt;</code>, along with real-time streaming and downloading capabilities for podcasts.</li>
+<li>System stability ensuring that it doesn’t crash or freeze for 99.99 percent of users, ideally never.</li>
+<li>Compatibility with Google AdWords and potential integration with other third-party ad providers.</li>
+<li>Real-time linking and updating of the product catalog from <code>&lt;music erp store&gt;</code>, possibly with personalized recommendations based on user consumption history.</li>
+<li>Integration with Facebook Live or even an in-house live streaming solution if feasible.</li>
+</ol>
+<p>These requirements distill through many layers of management before they reach your team - the team of developers. There will be course of development with &lsquo;regular checkin&rsquo; including these layers in your org and all seems well. Yet, when your team delivers the MVP a few months later, it&rsquo;s far from what the original requirements craved for💩. The application hangs on startup, the advertising selection interface is counter-intuitive, twitter product links are broken, and the Facebook Live stream is sluggish🔥.</p>
+<p>You as a developer are astonished becuase, the prioritized items that were due for delivery - according to the person <code>&lt;fancy title here&gt;</code> who distilled the requirements to your team were:</p>
+<ol>
+<li>A sophisticated recommendation system.</li>
+<li>Real-time transcript generation of all streams.</li>
+<li>Ultra-fast loading times across the globe.</li>
+<li>A proprietary streaming protocol to replace Facebook Live.</li>
+<li>A feature to easily integrate with more than 20 ad exchanges.</li>
+</ol>
+<p>So, you&rsquo;re effectively part of a team who has &lsquo;delivered&rsquo;, but considered a failure 👿. Go figure 😨. Understandably, you &amp; your team is confused &amp; angry, rightfully so, becuase you&rsquo;ve gone to hell and back to deliver this on time!</p>
+<p>The problem lies in the misinterpretation of the original objectives. The development team prioritized non-essential, <strong>exciting technical challenges</strong> over the core, functional requirements. This misalignment may be further amplified when communication between the team and stakeholders gets filtered through <strong>multiple layers</strong> (coughs product managers, project managers, delivery managers, and <code>&lt;fancy title&gt;</code> managers), each adding their own interpretation of what&rsquo;s needed 💩.</p>
+<p>Imaginary problems are often more fun to solve than real ones. Extremely intelligent people play competitive games, construct and solve problems, and write books that aim to answer abstract questions about the human condition, all of them for free. A mediocre programmer, however, will probably charge you a fair amount to build a simple Android app. That’s not because mediocre programmers are harder to find than geniuses, but because the former activities are all fun, while the latter can be quite boring.</p>
+<p>How many imaginary problems a software developer can create depends on their imagination and the complexity of the real problems they are tasked with. This is not unique to developers. Other departments like sales, HR, legal, and even accounting have their own ways of creating imaginary problems. These arise when individuals overemphasize minor issues related to their roles or take on more responsibilities than necessary, just to <strong>prove their relevance</strong>.</p>
+<p>One dark aspect of this phenomenon is that the existence of imaginary problems can be used as a means of justifying team or organizational growth. An example is the banking industry. Despite the technological advancements, online banking software is often complex and cumbersome, a reflection of the industry&rsquo;s hierarchy and its resistance to change. Not because the task of transferring and storing numbers is hard, but because addressing the real issues might threaten job security and established order.</p>
+<p>Imaginary problems often stem from boredom or from long communication chains. When requirements pass through multiple individuals, even with the best of intentions, misinterpretations and alterations are inevitable. Sometimes, these changes happen due to misunderstandings or a desire to make tasks more exciting.</p>
+<p>When the real problems get lost and replaced by imaginary ones, complex software solutions arise. This often happens when boring tasks are ignored in favor of more challenging and &lsquo;interesting&rsquo; problems. But this results in software that does not meet the needs of the end users and wastes time and resources.</p>
+<h2 id="the-dark-force">The dark force</h2>
+<p>There can often be an even darker reason for the existence of imaginary problems: problems can help a team or a company grow, and can even become an integral part of its function.</p>
+<p>Ever heard about the trio of IT experts who realized that maintaining online banking security wasn&rsquo;t as herculean as perceived? They engineered a foolproof banking application from scratch, harnessing functional design principles and memory safe languages, and began transitioning major banks to their impeccable framework.</p>
+<p>Probably not, because such a trio doesn&rsquo;t exist. Yet, there are numerous developer teams, struggling to understand basic principles such as &ldquo;rollbacks,&rdquo; consistently creating banking software.</p>
+<p>&ldquo;It&rsquo;s a challenge to make a person understand something when their livelihood depends on their ignorance of it!&rdquo; — Upton Sinclair</p>
+<p>Seeding imaginary problems and accounting for complex software that solves for these imaginary problems - sure, that&rsquo;s one way to claim &lsquo;busy&rsquo; and &lsquo;percieved&rsquo; progress or &lsquo;useless&rsquo; celebration, but how does something like go unnoticed? Isn&rsquo;t this basic common sense 😵?</p>
+<p>Well, isnt this is kinda similar to -</p>
+<ul>
+<li>The boardroom often turns a blind eye to the management indulging in &ldquo;conference trips&rdquo; involving exotic locations and generous allowances for &ldquo;miscellaneous&rdquo; expenses. In return, the management overlooks the board&rsquo;s less than transparent practices.</li>
+<li>Encouraged by department heads to maintain an image of perfection, management turns a blind eye to those spending more on their office decor and personal assistants than necessary.</li>
+<li>Because supervisors don&rsquo;t question their grandiose power displays, department heads ignore those supervisors who, instead of reducing overheads, focus on creating impressive presentations.</li>
+<li>Because team leaders don&rsquo;t complain about their superiors&rsquo; lack of understanding of basic software, supervisors ignore the team leaders discussing complex system integration instead of addressing slow response times.</li>
+<li>Team leaders, not recognizing that their bosses barely understand coding, don&rsquo;t question their developers who, instead of diagnosing the slow server response times, keep overhauling the user interface using the latest JavaScript frameworks.</li>
+</ul>
+<p>It&rsquo;s a vicious cycle of tackling non-existent problems—from the CEO who doesn&rsquo;t understand that securing another big investor won&rsquo;t compensate for customer dissatisfaction, to the software intern who doesn&rsquo;t realize that redesigning the booking interface won&rsquo;t solve the issue of overbooking.</p>
+<p>But everyone keeps trying to solve these imaginary problems, because if they stop and focus on the real problems, they might realize the whole system is fundamentally flawed 😇.</p>
+
+    </div>
+    <div class="post-footer">
+      
+    </div>
+  </article>
+
+    </main>
+  </body>
+</html>

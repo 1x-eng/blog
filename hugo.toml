@@ -12,6 +12,8 @@ googleAnalytics = "G-0Q0C7S8K6Z"
       unsafe = true
   [markup.highlight]
     noClasses = false
+    style = "monokai"
+    lineNos = true
 
 [params]
   author = "Pruthvi Kumar"
