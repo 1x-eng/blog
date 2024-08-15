@@ -1,6 +1,7 @@
 ---
 title: "Mutex vs Semaphore"
 date: 2024-08-15T18:36:22+10:00
+mermaid: true
 draft: false
 ---
 

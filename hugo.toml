@@ -5,11 +5,21 @@ theme = "m10c"
 enableEmoji = true
 googleAnalytics = "G-0Q0C7S8K6Z"
 
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+  [markup.highlight]
+    noClasses = false
+
 [params]
   author = "Pruthvi Kumar"
   description = "confessions of a serial key puncher: the life and times of a coder."
   enableEmoji = true
   enableMetaTags = true
+
+  customCSS = ["css/custom.css"]
 
   [[params.social]]
     icon = "github"
