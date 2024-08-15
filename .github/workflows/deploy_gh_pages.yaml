@@ -3,7 +3,7 @@ name: Deploy Hugo site via GitHub Pages
 on:
   push:
     branches:
-      - main # Set a branch to deploy
+      - main
   pull_request:
 
 permissions:
@@ -11,12 +11,15 @@ permissions:
 
 jobs:
   deploy:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
-          submodules: true # Fetch Hugo themes (true OR recursive)
-          fetch-depth: 0 # Fetch all history for .GitInfo and .Lastmod
+          submodules: true
+          fetch-depth: 0
+
+      - name: Install Dart Sass
+        run: sudo snap install dart-sass
 
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v2

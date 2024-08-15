@@ -1,0 +1,40 @@
+.mermaid {
+    background-color: #2d2d2d;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 20px 0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  
+    svg {
+      display: block;
+      margin: 0 auto;
+    }
+  
+    .node rect,
+    .node circle,
+    .node ellipse,
+    .node polygon,
+    .node path {
+      stroke-width: 2px;
+      stroke: #7f7f7f;
+      fill: #3d3d3d;
+    }
+  
+    .label {
+      color: #fff;
+    }
+  
+    .edgeLabel {
+      background-color: #2d2d2d;
+    }
+  
+    .cluster rect {
+      fill: #3d3d3d !important;
+      stroke: #888 !important;
+      stroke-width: 1px !important;
+    }
+  
+    .cluster text {
+      fill: #f8f8f2;
+    }
+  }
