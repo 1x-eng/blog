@@ -1,43 +1,35 @@
 <!doctype html><html lang=en-us><head><title>Mutex vs Semaphore // a dystopian journey into the heart of tech</title>
-<link rel="shortcut icon" href=/favicon.ico><meta charset=utf-8><meta name=generator content="Hugo 0.132.1"><meta name=viewport content="width=device-width,initial-scale=1"><meta name=author content="Pruthvi Kumar"><meta name=description content><link rel=stylesheet href=/blog/css/main.min.5b1fcc8902588589c4767187402a3c29f8b8d7a6fdef6d9f8f77045bb0d14fee.css><script async src="https://www.googletagmanager.com/gtag/js?id=G-0Q0C7S8K6Z"></script><script>var dnt,doNotTrack=!1;if(!1&&(dnt=navigator.doNotTrack||window.doNotTrack||navigator.msDoNotTrack,doNotTrack=dnt=="1"||dnt=="yes"),!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-0Q0C7S8K6Z")}</script><meta name=twitter:card content="summary"><meta name=twitter:title content="Mutex vs Semaphore"><meta name=twitter:description content="Mutex vs Semaphore: The Lesser of Two Evils Mutexes and semaphores are like siblings in the synchronization primitives family — one a stickler for rules (mutex), the other more lenient but equally capable of chaos when misused (semaphore). I’ll try to dive into this family drama with a sprinkle of snark, to explore their strengths, weaknesses.. And, both drive me nuts when misused.
-The Boring Theory Mutex A mutex, short for “mutual exclusion,” is like that one friend who insists on being the only one to use their fancy pen."><meta property="og:url" content="https://1x-eng.github.io/blog/posts/mutex-vs-semaphore/"><meta property="og:site_name" content="a dystopian journey into the heart of tech"><meta property="og:title" content="Mutex vs Semaphore"><meta property="og:description" content="Mutex vs Semaphore: The Lesser of Two Evils Mutexes and semaphores are like siblings in the synchronization primitives family — one a stickler for rules (mutex), the other more lenient but equally capable of chaos when misused (semaphore). I’ll try to dive into this family drama with a sprinkle of snark, to explore their strengths, weaknesses.. And, both drive me nuts when misused.
-The Boring Theory Mutex A mutex, short for “mutual exclusion,” is like that one friend who insists on being the only one to use their fancy pen."><meta property="og:locale" content="en_us"><meta property="og:type" content="article"><meta property="article:section" content="posts"><meta property="article:published_time" content="2024-08-15T18:36:22+10:00"><meta property="article:modified_time" content="2024-08-15T18:36:22+10:00"></head><body><header class=app-header><a href=https://1x-eng.github.io/blog/><img class=app-header-avatar src=/blog/avatar.jpg alt="Pruthvi Kumar"></a>
-<span class=app-header-title>a dystopian journey into the heart of tech</span><p>confessions of a serial key puncher: the life and times of a coder.</p><div class=app-header-social><a href=https://github.com/1x-eng target=_blank rel="noreferrer noopener me"><svg viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github"><title>GitHub</title><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37.0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44.0 0020 4.77 5.07 5.07.0 0019.91 1S18.73.65 16 2.48a13.38 13.38.0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07.0 005 4.77 5.44 5.44.0 003.5 8.55c0 5.42 3.3 6.61 6.44 7A3.37 3.37.0 009 18.13V22"/></svg>
-</a><a href=https://au.linkedin.com/in/iampruthvi target=_blank rel="noreferrer noopener me"><svg viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-linkedin"><title>Linkedin</title><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-</a><a href=https://stackoverflow.com/users/10019687/pruthvi-kumar target=_blank rel="noreferrer noopener me"><svg viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-layers"><title>Stackoverflow</title><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg></a></div></header><main class=app-container><article class=post><header class=post-header><h1 class=post-title>Mutex vs Semaphore</h1><div class=post-meta><div><svg viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar"><title>calendar</title><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+<meta charset=utf-8><meta name=generator content="Hugo 0.132.1"><meta name=viewport content="width=device-width,initial-scale=1"><meta name=author content="Pruthvi Kumar"><meta name=description content><link rel=stylesheet href=/blog/css/main.min.5b1fcc8902588589c4767187402a3c29f8b8d7a6fdef6d9f8f77045bb0d14fee.css><link rel=stylesheet href=/blog/css/custom.min.2d10eda01685532ba49b7ae5c674b718aaee4ebbf26738e55917d1fc225e514b.css integrity="sha256-LRDtoBaFUyukm3rlxnS3GKruTrvyZzjlWRfR/CJeUUs=" crossorigin=anonymous><script src=https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js></script><script>document.addEventListener("DOMContentLoaded",e=>{console.log("DOM fully loaded and parsed"),typeof mermaid!="undefined"?(console.log("Mermaid found, initializing..."),mermaid.initialize({startOnLoad:!0,theme:"dark",themeVariables:{darkMode:!0,background:"#2d2d2d",primaryColor:"#ff9800",secondaryColor:"#2196f3",tertiaryColor:"#4caf50",primaryTextColor:"#fff",secondaryTextColor:"#ddd",lineColor:"#999",textColor:"#fff",mainBkg:"#2d2d2d",nodeBorder:"#7f7f7f",clusterBkg:"#3d3d3d",clusterBorder:"#888",titleColor:"#f8f8f2"}})):console.error("Mermaid not found!")})</script></head><body><header class=app-header><a href=https://1x-eng.github.io/blog/><img class=app-header-avatar src=/blog/avatar.jpg alt="Pruthvi Kumar"></a>
+<span class=app-header-title>a dystopian journey into the heart of tech</span><p>confessions of a serial key puncher: the life and times of a coder.</p></header><main class=app-container><article class=post><header class=post-header><h1 class=post-title>Mutex vs Semaphore</h1><div class=post-meta><div><svg viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar"><title>calendar</title><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
 Aug 15, 2024</div><div><svg viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock"><title>clock</title><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-9 min read</div></div></header><div class=post-content><h1 id=mutex-vs-semaphore-the-lesser-of-two-evils>Mutex vs Semaphore: The Lesser of Two Evils</h1><p>Mutexes and semaphores are like siblings in the synchronization primitives family — one a stickler for rules (mutex), the other more lenient but equally capable of chaos when misused (semaphore). I&rsquo;ll try to dive into this family drama with a sprinkle of snark, to explore their strengths, weaknesses.. And, both drive me nuts when misused.</p><h1 id=the-boring-theory>The Boring Theory</h1><h2 id=mutex>Mutex</h2><p>A mutex, short for &ldquo;mutual exclusion,&rdquo; is like that one friend who insists on being the only one to use their fancy pen. It&rsquo;s a locking mechanism that ensures only one thread can access a shared resource at a time.</p><pre tabindex=0><code class=language-mermaid data-lang=mermaid>sequenceDiagram
-    participant T1 as Thread 1
-    participant M as Mutex
-    participant R as Resource
-    participant T2 as Thread 2
-
-    T1-&gt;&gt;M: Lock
-    M-&gt;&gt;T1: Granted
-    T1-&gt;&gt;R: Access
-    T2-&gt;&gt;M: Lock (Blocked)
-    T1-&gt;&gt;R: Finish
-    T1-&gt;&gt;M: Unlock
-    M-&gt;&gt;T2: Granted
-    T2-&gt;&gt;R: Access
-</code></pre><h2 id=semaphore>Semaphore</h2><p>A semaphore, on the other hand, is a signaling mechanism. It can control access by multiple threads using a counter. When the counter is greater than zero, a thread can proceed and decrement the counter. When it hits zero, threads block until the counter is incremented.</p><p>Loosely speaking, a semaphore is like a nightclub bouncer with a clicker. It allows a specified number of threads to access a resource concurrently. When the limit is reached, newcomers have to wait until someone leaves.</p><pre tabindex=0><code class=language-mermaid data-lang=mermaid>sequenceDiagram
-    participant T1 as Thread 1
-    participant T2 as Thread 2
-    participant S as Semaphore (2)
-    participant R as Resource
-    participant T3 as Thread 3
-
-    T1-&gt;&gt;S: Acquire
-    S-&gt;&gt;T1: Granted (1 left)
-    T2-&gt;&gt;S: Acquire
-    S-&gt;&gt;T2: Granted (0 left)
-    T1-&gt;&gt;R: Access
-    T2-&gt;&gt;R: Access
-    T3-&gt;&gt;S: Acquire (Blocked)
-    T1-&gt;&gt;S: Release
-    S-&gt;&gt;T3: Granted
-    T3-&gt;&gt;R: Access
-</code></pre><h1 id=the-good-the-bad-and-the-ugly>The Good, The Bad, and The Ugly</h1><h2 id=mutex-when-one-is-the-loneliest-number-and-thats-good>Mutex: When One Is the Loneliest Number (And That&rsquo;s Good)</h2><p>Use a mutex when:</p><ol><li>You have a critical section that absolutely must be executed by only one thread at a time.</li><li>You need to protect shared data from race conditions.</li><li>You want to ensure the atomicity of a complex operation.</li></ol><div class=highlight><pre tabindex=0 class=chroma><code class=language-csharp data-lang=csharp><span class=line><span class=cl><span class=k>using</span> <span class=nn>System</span><span class=p>;</span>
+9 min read</div></div></header><div class=post-content><h1 id=mutex-vs-semaphore-the-lesser-of-two-evils>Mutex vs Semaphore: The Lesser of Two Evils</h1><p>Mutexes and semaphores are like siblings in the synchronization primitives family — one a stickler for rules (mutex), the other more lenient but equally capable of chaos when misused (semaphore). I&rsquo;ll try to dive into this family drama with a sprinkle of snark, to explore their strengths, weaknesses.. And, both drive me nuts when misused.</p><h1 id=the-boring-theory>The Boring Theory</h1><h2 id=mutex>Mutex</h2><p>A mutex, short for &ldquo;mutual exclusion,&rdquo; is like that one friend who insists on being the only one to use their fancy pen. It&rsquo;s a locking mechanism that ensures only one thread can access a shared resource at a time.</p><div class=mermaid>sequenceDiagram
+participant T1 as Thread 1
+participant M as Mutex
+participant R as Resource
+participant T2 as Thread 2
+T1->>M: Lock
+M->>T1: Granted
+T1->>R: Access
+T2->>M: Lock (Blocked)
+T1->>R: Finish
+T1->>M: Unlock
+M->>T2: Granted
+T2->>R: Access</div><h2 id=semaphore>Semaphore</h2><p>A semaphore, on the other hand, is a signaling mechanism. It can control access by multiple threads using a counter. When the counter is greater than zero, a thread can proceed and decrement the counter. When it hits zero, threads block until the counter is incremented.</p><p>Loosely speaking, a semaphore is like a nightclub bouncer with a clicker. It allows a specified number of threads to access a resource concurrently. When the limit is reached, newcomers have to wait until someone leaves.</p><div class=mermaid>sequenceDiagram
+participant T1 as Thread 1
+participant T2 as Thread 2
+participant S as Semaphore (2)
+participant R as Resource
+participant T3 as Thread 3
+T1->>S: Acquire
+S->>T1: Granted (1 left)
+T2->>S: Acquire
+S->>T2: Granted (0 left)
+T1->>R: Access
+T2->>R: Access
+T3->>S: Acquire (Blocked)
+T1->>S: Release
+S->>T3: Granted
+T3->>R: Access</div><h1 id=the-good-the-bad-and-the-ugly>The Good, The Bad, and The Ugly</h1><h2 id=mutex-when-one-is-the-loneliest-number-and-thats-good>Mutex: When One Is the Loneliest Number (And That&rsquo;s Good)</h2><p>Use a mutex when:</p><ol><li>You have a critical section that absolutely must be executed by only one thread at a time.</li><li>You need to protect shared data from race conditions.</li><li>You want to ensure the atomicity of a complex operation.</li></ol><div class=highlight><pre tabindex=0 class=chroma><code class=language-csharp data-lang=csharp><span class=line><span class=cl><span class=k>using</span> <span class=nn>System</span><span class=p>;</span>
 </span></span><span class=line><span class=cl><span class=k>using</span> <span class=nn>System.Threading</span><span class=p>;</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl><span class=kd>public</span> <span class=k>class</span> <span class=nc>BankAccount</span>
@@ -102,12 +94,11 @@ Aug 15, 2024</div><div><svg viewBox="0 0 24 24" fill="none" stroke="currentcolor
 </span></span><span class=line><span class=cl>        <span class=n>semaphore</span><span class=p>.</span><span class=n>Release</span><span class=p>();</span>
 </span></span><span class=line><span class=cl>    <span class=p>}</span>
 </span></span><span class=line><span class=cl><span class=p>}</span>
-</span></span></code></pre></div><h2 id=the-pitfalls-where-good-intentions-go-to-die>The Pitfalls: Where Good Intentions Go to Die</h2><p>Now, let&rsquo;s talk about &lsquo;cases&rsquo; when &lsquo;some&rsquo; of us manage to royally screw things up. Buckle up, because this is where it gets painful.</p><h3 id=deadlocks-the-eternal-standoff>Deadlocks: The Eternal Standoff</h3><p>Picture two threads, each holding a resource the other needs. They&rsquo;re locked in a deadly embrace, waiting for the other to blink first. This, my friends, is a deadlock.</p><pre tabindex=0><code class=language-mermaid data-lang=mermaid>graph TD
-    A[Thread A] --&gt;|Holds| R1[Resource 1]
-    B[Thread B] --&gt;|Holds| R2[Resource 2]
-    A --&gt;|Wants| R2
-    B --&gt;|Wants| R1
-</code></pre><p>To avoid this nightmare:</p><ol><li>Always acquire locks in a consistent order.</li><li>Use timeouts when acquiring locks.</li><li>Implement deadlock detection and recovery mechanisms.</li></ol><h3 id=priority-inversion-when-the-vip-gets-stuck-behind-the-bouncer>Priority Inversion: When the VIP Gets Stuck Behind the Bouncer</h3><p>Imagine a high-priority thread waiting for a low-priority thread to release a lock. Meanwhile, a medium-priority thread keeps preempting the low-priority thread. It&rsquo;s like a VIP stuck behind the bouncer while regular patrons keep streaming in.</p><p>To mitigate this:</p><ol><li>Use priority inheritance protocols.</li><li>Minimize the time locks are held.</li><li>Consider lock-free algorithms for performance-critical sections.
+</span></span></code></pre></div><h2 id=the-pitfalls-where-good-intentions-go-to-die>The Pitfalls: Where Good Intentions Go to Die</h2><p>Now, let&rsquo;s talk about &lsquo;cases&rsquo; when &lsquo;some&rsquo; of us manage to royally screw things up. Buckle up, because this is where it gets painful.</p><h3 id=deadlocks-the-eternal-standoff>Deadlocks: The Eternal Standoff</h3><p>Picture two threads, each holding a resource the other needs. They&rsquo;re locked in a deadly embrace, waiting for the other to blink first. This, my friends, is a deadlock.</p><div class=mermaid>graph TD
+A[Thread A] -->|Holds| R1[Resource 1]
+B[Thread B] -->|Holds| R2[Resource 2]
+A -->|Wants| R2
+B -->|Wants| R1</div><p>To avoid this nightmare:</p><ol><li>Always acquire locks in a consistent order.</li><li>Use timeouts when acquiring locks.</li><li>Implement deadlock detection and recovery mechanisms.</li></ol><h3 id=priority-inversion-when-the-vip-gets-stuck-behind-the-bouncer>Priority Inversion: When the VIP Gets Stuck Behind the Bouncer</h3><p>Imagine a high-priority thread waiting for a low-priority thread to release a lock. Meanwhile, a medium-priority thread keeps preempting the low-priority thread. It&rsquo;s like a VIP stuck behind the bouncer while regular patrons keep streaming in.</p><p>To mitigate this:</p><ol><li>Use priority inheritance protocols.</li><li>Minimize the time locks are held.</li><li>Consider lock-free algorithms for performance-critical sections.
 (your current and future peers will either thank you immensely or curse you out—depending on how well you understand and implement this. This is a world of dragons, fwiw.)</li></ol><p>and, for the love of all that’s holy, please go with the simpler option!! PLEASE!</p><h2 id=maybe-lets-switch-gears>Maybe lets switch gears?</h2><h3 id=read-write-locks-the-bookworms-paradise>Read-Write Locks: The Bookworm&rsquo;s Paradise</h3><p>When you have many readers and few writers, a read-write lock can significantly improve performance.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-csharp data-lang=csharp><span class=line><span class=cl><span class=k>using</span> <span class=nn>System</span><span class=p>;</span>
 </span></span><span class=line><span class=cl><span class=k>using</span> <span class=nn>System.Threading</span><span class=p>;</span>
 </span></span><span class=line><span class=cl><span class=k>using</span> <span class=nn>System.Threading.Tasks</span><span class=p>;</span>
