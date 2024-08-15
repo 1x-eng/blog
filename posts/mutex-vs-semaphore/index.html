@@ -1,0 +1,336 @@
+<!doctype html><html lang=en-us><head><title>Mutex vs Semaphore // a dystopian journey into the heart of tech</title>
+<link rel="shortcut icon" href=/favicon.ico><meta charset=utf-8><meta name=generator content="Hugo 0.132.1"><meta name=viewport content="width=device-width,initial-scale=1"><meta name=author content="Pruthvi Kumar"><meta name=description content><link rel=stylesheet href=/blog/css/main.min.3c3c186cd62e563ad6e2f00a89dbee656ab912d1d46f856b5605dd0232521e2a.css><script async src="https://www.googletagmanager.com/gtag/js?id=G-0Q0C7S8K6Z"></script><script>var dnt,doNotTrack=!1;if(!1&&(dnt=navigator.doNotTrack||window.doNotTrack||navigator.msDoNotTrack,doNotTrack=dnt=="1"||dnt=="yes"),!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-0Q0C7S8K6Z")}</script><meta name=twitter:card content="summary"><meta name=twitter:title content="Mutex vs Semaphore"><meta name=twitter:description content="Mutex vs Semaphore: The Lesser of Two Evils Mutexes and semaphores are like siblings in the synchronization primitives family — one a stickler for rules (mutex), the other more lenient but equally capable of chaos when misused (semaphore). I’ll try to dive into this family drama with a sprinkle of snark, to explore their strengths, weaknesses.. And, both drive me nuts when misused.
+The Boring Theory Mutex A mutex, short for “mutual exclusion,” is like that one friend who insists on being the only one to use their fancy pen."><meta property="og:url" content="https://1x-eng.github.io/blog/posts/mutex-vs-semaphore/"><meta property="og:site_name" content="a dystopian journey into the heart of tech"><meta property="og:title" content="Mutex vs Semaphore"><meta property="og:description" content="Mutex vs Semaphore: The Lesser of Two Evils Mutexes and semaphores are like siblings in the synchronization primitives family — one a stickler for rules (mutex), the other more lenient but equally capable of chaos when misused (semaphore). I’ll try to dive into this family drama with a sprinkle of snark, to explore their strengths, weaknesses.. And, both drive me nuts when misused.
+The Boring Theory Mutex A mutex, short for “mutual exclusion,” is like that one friend who insists on being the only one to use their fancy pen."><meta property="og:locale" content="en_us"><meta property="og:type" content="article"><meta property="article:section" content="posts"><meta property="article:published_time" content="2024-08-15T18:36:22+10:00"><meta property="article:modified_time" content="2024-08-15T18:36:22+10:00"></head><body><header class=app-header><a href=https://1x-eng.github.io/blog/><img class=app-header-avatar src=/blog/avatar.jpg alt="Pruthvi Kumar"></a>
+<span class=app-header-title>a dystopian journey into the heart of tech</span><p>confessions of a serial key puncher: the life and times of a coder.</p><div class=app-header-social><a href=https://github.com/1x-eng target=_blank rel="noreferrer noopener me"><svg viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github"><title>GitHub</title><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37.0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44.0 0020 4.77 5.07 5.07.0 0019.91 1S18.73.65 16 2.48a13.38 13.38.0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07.0 005 4.77 5.44 5.44.0 003.5 8.55c0 5.42 3.3 6.61 6.44 7A3.37 3.37.0 009 18.13V22"/></svg>
+</a><a href=https://au.linkedin.com/in/iampruthvi target=_blank rel="noreferrer noopener me"><svg viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-linkedin"><title>Linkedin</title><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+</a><a href=https://stackoverflow.com/users/10019687/pruthvi-kumar target=_blank rel="noreferrer noopener me"><svg viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-layers"><title>Stackoverflow</title><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg></a></div></header><main class=app-container><article class=post><header class=post-header><h1 class=post-title>Mutex vs Semaphore</h1><div class=post-meta><div><svg viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar"><title>calendar</title><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+Aug 15, 2024</div><div><svg viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock"><title>clock</title><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+9 min read</div></div></header><div class=post-content><h1 id=mutex-vs-semaphore-the-lesser-of-two-evils>Mutex vs Semaphore: The Lesser of Two Evils</h1><p>Mutexes and semaphores are like siblings in the synchronization primitives family — one a stickler for rules (mutex), the other more lenient but equally capable of chaos when misused (semaphore). I&rsquo;ll try to dive into this family drama with a sprinkle of snark, to explore their strengths, weaknesses.. And, both drive me nuts when misused.</p><h1 id=the-boring-theory>The Boring Theory</h1><h2 id=mutex>Mutex</h2><p>A mutex, short for &ldquo;mutual exclusion,&rdquo; is like that one friend who insists on being the only one to use their fancy pen. It&rsquo;s a locking mechanism that ensures only one thread can access a shared resource at a time.</p><pre tabindex=0><code class=language-mermaid data-lang=mermaid>sequenceDiagram
+    participant T1 as Thread 1
+    participant M as Mutex
+    participant R as Resource
+    participant T2 as Thread 2
+
+    T1-&gt;&gt;M: Lock
+    M-&gt;&gt;T1: Granted
+    T1-&gt;&gt;R: Access
+    T2-&gt;&gt;M: Lock (Blocked)
+    T1-&gt;&gt;R: Finish
+    T1-&gt;&gt;M: Unlock
+    M-&gt;&gt;T2: Granted
+    T2-&gt;&gt;R: Access
+</code></pre><h2 id=semaphore>Semaphore</h2><p>A semaphore, on the other hand, is a signaling mechanism. It can control access by multiple threads using a counter. When the counter is greater than zero, a thread can proceed and decrement the counter. When it hits zero, threads block until the counter is incremented.</p><p>Loosely speaking, a semaphore is like a nightclub bouncer with a clicker. It allows a specified number of threads to access a resource concurrently. When the limit is reached, newcomers have to wait until someone leaves.</p><pre tabindex=0><code class=language-mermaid data-lang=mermaid>sequenceDiagram
+    participant T1 as Thread 1
+    participant T2 as Thread 2
+    participant S as Semaphore (2)
+    participant R as Resource
+    participant T3 as Thread 3
+
+    T1-&gt;&gt;S: Acquire
+    S-&gt;&gt;T1: Granted (1 left)
+    T2-&gt;&gt;S: Acquire
+    S-&gt;&gt;T2: Granted (0 left)
+    T1-&gt;&gt;R: Access
+    T2-&gt;&gt;R: Access
+    T3-&gt;&gt;S: Acquire (Blocked)
+    T1-&gt;&gt;S: Release
+    S-&gt;&gt;T3: Granted
+    T3-&gt;&gt;R: Access
+</code></pre><h1 id=the-good-the-bad-and-the-ugly>The Good, The Bad, and The Ugly</h1><h2 id=mutex-when-one-is-the-loneliest-number-and-thats-good>Mutex: When One Is the Loneliest Number (And That&rsquo;s Good)</h2><p>Use a mutex when:</p><ol><li>You have a critical section that absolutely must be executed by only one thread at a time.</li><li>You need to protect shared data from race conditions.</li><li>You want to ensure the atomicity of a complex operation.</li></ol><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-csharp data-lang=csharp><span style=display:flex><span><span style=color:#66d9ef>using</span> System;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>using</span> System.Threading;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>BankAccount</span>
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>   <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>decimal</span> balance = <span style=color:#ae81ff>0</span>;
+</span></span><span style=display:flex><span>   <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>readonly</span> <span style=color:#66d9ef>object</span> lockObject = <span style=color:#66d9ef>new</span> <span style=color:#66d9ef>object</span>();
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>   <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>void</span> Deposit(<span style=color:#66d9ef>decimal</span> amount)
+</span></span><span style=display:flex><span>   {
+</span></span><span style=display:flex><span>       <span style=color:#66d9ef>lock</span> (lockObject)
+</span></span><span style=display:flex><span>       {
+</span></span><span style=display:flex><span>           <span style=color:#75715e>// Critical section</span>
+</span></span><span style=display:flex><span>           balance += amount;
+</span></span><span style=display:flex><span>       }
+</span></span><span style=display:flex><span>   }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>   <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>bool</span> Withdraw(<span style=color:#66d9ef>decimal</span> amount)
+</span></span><span style=display:flex><span>   {
+</span></span><span style=display:flex><span>       <span style=color:#66d9ef>lock</span> (lockObject)
+</span></span><span style=display:flex><span>       {
+</span></span><span style=display:flex><span>           <span style=color:#66d9ef>if</span> (balance &gt;= amount)
+</span></span><span style=display:flex><span>           {
+</span></span><span style=display:flex><span>               balance -= amount;
+</span></span><span style=display:flex><span>               <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>true</span>;
+</span></span><span style=display:flex><span>           }
+</span></span><span style=display:flex><span>           <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>false</span>;
+</span></span><span style=display:flex><span>       }
+</span></span><span style=display:flex><span>   }
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><h2 id=semaphore-when-you-need-to-control-the-party>Semaphore: When You Need to Control the Party</h2><p>Use a semaphore when:</p><ol><li>You want to limit the number of threads that can access a resource concurrently.</li><li>You&rsquo;re implementing a producer-consumer pattern.</li><li>You need to synchronize access to a pool of resources.</li></ol><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-csharp data-lang=csharp><span style=display:flex><span><span style=color:#66d9ef>using</span> System;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>using</span> System.Collections.Generic;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>using</span> System.Threading;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Connection</span>
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>    <span style=color:#75715e>// Connection implementation</span>
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>ConnectionPool</span>
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>readonly</span> List&lt;Connection&gt; connections = <span style=color:#66d9ef>new</span> List&lt;Connection&gt;();
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>readonly</span> SemaphoreSlim semaphore;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>public</span> ConnectionPool(<span style=color:#66d9ef>int</span> maxConnections)
+</span></span><span style=display:flex><span>    {
+</span></span><span style=display:flex><span>        semaphore = <span style=color:#66d9ef>new</span> SemaphoreSlim(maxConnections, maxConnections);
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>int</span> i = <span style=color:#ae81ff>0</span>; i &lt; maxConnections; i++)
+</span></span><span style=display:flex><span>        {
+</span></span><span style=display:flex><span>            connections.Add(<span style=color:#66d9ef>new</span> Connection());
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>async</span> Task&lt;Connection&gt; GetConnectionAsync()
+</span></span><span style=display:flex><span>    {
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>await</span> semaphore.WaitAsync();
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> connections[connections.Count - <span style=color:#ae81ff>1</span>];
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>void</span> ReleaseConnection(Connection connection)
+</span></span><span style=display:flex><span>    {
+</span></span><span style=display:flex><span>        connections.Add(connection);
+</span></span><span style=display:flex><span>        semaphore.Release();
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><h2 id=the-pitfalls-where-good-intentions-go-to-die>The Pitfalls: Where Good Intentions Go to Die</h2><p>Now, let&rsquo;s talk about &lsquo;cases&rsquo; when &lsquo;some&rsquo; of us manage to royally screw things up. Buckle up, because this is where it gets painful.</p><h3 id=deadlocks-the-eternal-standoff>Deadlocks: The Eternal Standoff</h3><p>Picture two threads, each holding a resource the other needs. They&rsquo;re locked in a deadly embrace, waiting for the other to blink first. This, my friends, is a deadlock.</p><pre tabindex=0><code class=language-mermaid data-lang=mermaid>graph TD
+    A[Thread A] --&gt;|Holds| R1[Resource 1]
+    B[Thread B] --&gt;|Holds| R2[Resource 2]
+    A --&gt;|Wants| R2
+    B --&gt;|Wants| R1
+</code></pre><p>To avoid this nightmare:</p><ol><li>Always acquire locks in a consistent order.</li><li>Use timeouts when acquiring locks.</li><li>Implement deadlock detection and recovery mechanisms.</li></ol><h3 id=priority-inversion-when-the-vip-gets-stuck-behind-the-bouncer>Priority Inversion: When the VIP Gets Stuck Behind the Bouncer</h3><p>Imagine a high-priority thread waiting for a low-priority thread to release a lock. Meanwhile, a medium-priority thread keeps preempting the low-priority thread. It&rsquo;s like a VIP stuck behind the bouncer while regular patrons keep streaming in.</p><p>To mitigate this:</p><ol><li>Use priority inheritance protocols.</li><li>Minimize the time locks are held.</li><li>Consider lock-free algorithms for performance-critical sections.
+(your current and future peers will either thank you immensely or curse you out—depending on how well you understand and implement this. This is a world of dragons, fwiw.)</li></ol><p>and, for the love of all that’s holy, please go with the simpler option!! PLEASE!</p><h2 id=maybe-lets-switch-gears>Maybe lets switch gears?</h2><h3 id=read-write-locks-the-bookworms-paradise>Read-Write Locks: The Bookworm&rsquo;s Paradise</h3><p>When you have many readers and few writers, a read-write lock can significantly improve performance.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-csharp data-lang=csharp><span style=display:flex><span><span style=color:#66d9ef>using</span> System;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>using</span> System.Threading;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>using</span> System.Threading.Tasks;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>AsyncReadWriteLock</span>
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>readonly</span> SemaphoreSlim _readSemaphore = <span style=color:#66d9ef>new</span> SemaphoreSlim(<span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>1</span>);
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>readonly</span> SemaphoreSlim _writeSemaphore = <span style=color:#66d9ef>new</span> SemaphoreSlim(<span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>1</span>);
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>int</span> _readCount = <span style=color:#ae81ff>0</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>async</span> Task&lt;IDisposable&gt; ReadLockAsync(CancellationToken cancellationToken = <span style=color:#66d9ef>default</span>)
+</span></span><span style=display:flex><span>    {
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>await</span> _readSemaphore.WaitAsync(cancellationToken);
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>try</span>
+</span></span><span style=display:flex><span>        {
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>if</span> (Interlocked.Increment(<span style=color:#66d9ef>ref</span> _readCount) == <span style=color:#ae81ff>1</span>)
+</span></span><span style=display:flex><span>            {
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>await</span> _writeSemaphore.WaitAsync(cancellationToken);
+</span></span><span style=display:flex><span>            }
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>finally</span>
+</span></span><span style=display:flex><span>        {
+</span></span><span style=display:flex><span>            _readSemaphore.Release();
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>new</span> AsyncDisposable(<span style=color:#66d9ef>async</span> () =&gt;
+</span></span><span style=display:flex><span>        {
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>await</span> _readSemaphore.WaitAsync(cancellationToken);
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>try</span>
+</span></span><span style=display:flex><span>            {
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>if</span> (Interlocked.Decrement(<span style=color:#66d9ef>ref</span> _readCount) == <span style=color:#ae81ff>0</span>)
+</span></span><span style=display:flex><span>                {
+</span></span><span style=display:flex><span>                    _writeSemaphore.Release();
+</span></span><span style=display:flex><span>                }
+</span></span><span style=display:flex><span>            }
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>finally</span>
+</span></span><span style=display:flex><span>            {
+</span></span><span style=display:flex><span>                _readSemaphore.Release();
+</span></span><span style=display:flex><span>            }
+</span></span><span style=display:flex><span>        });
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>async</span> Task&lt;IDisposable&gt; WriteLockAsync(CancellationToken cancellationToken = <span style=color:#66d9ef>default</span>)
+</span></span><span style=display:flex><span>    {
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>await</span> _writeSemaphore.WaitAsync(cancellationToken);
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>new</span> AsyncDisposable(() =&gt; Task.FromResult(_writeSemaphore.Release()));
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>AsyncDisposable</span> : IDisposable
+</span></span><span style=display:flex><span>    {
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>readonly</span> Func&lt;Task&gt; _releaseAction;
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>bool</span> _isDisposed;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>public</span> AsyncDisposable(Func&lt;Task&gt; releaseAction)
+</span></span><span style=display:flex><span>        {
+</span></span><span style=display:flex><span>            _releaseAction = releaseAction;
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>void</span> Dispose()
+</span></span><span style=display:flex><span>        {
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>if</span> (_isDisposed) <span style=color:#66d9ef>return</span>;
+</span></span><span style=display:flex><span>            _isDisposed = <span style=color:#66d9ef>true</span>;
+</span></span><span style=display:flex><span>            _releaseAction().GetAwaiter().GetResult();
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p>and that could be used in a potential real-world use case like this -</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-csharp data-lang=csharp><span style=display:flex><span><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>ThreadSafeCache</span>
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>readonly</span> Dictionary&lt;<span style=color:#66d9ef>string</span>, <span style=color:#66d9ef>string</span>&gt; _cache = <span style=color:#66d9ef>new</span> Dictionary&lt;<span style=color:#66d9ef>string</span>, <span style=color:#66d9ef>string</span>&gt;();
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>readonly</span> AsyncReadWriteLock _lock = <span style=color:#66d9ef>new</span> AsyncReadWriteLock();
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>async</span> Task&lt;<span style=color:#66d9ef>string</span>&gt; GetOrAddAsync(<span style=color:#66d9ef>string</span> key, Func&lt;Task&lt;<span style=color:#66d9ef>string</span>&gt;&gt; valueFactory, CancellationToken cancellationToken = <span style=color:#66d9ef>default</span>)
+</span></span><span style=display:flex><span>    {
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>using</span> (<span style=color:#66d9ef>await</span> _lock.ReadLockAsync(cancellationToken))
+</span></span><span style=display:flex><span>        {
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>if</span> (_cache.TryGetValue(key, <span style=color:#66d9ef>out</span> <span style=color:#66d9ef>string</span> <span style=color:#66d9ef>value</span>))
+</span></span><span style=display:flex><span>            {
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>value</span>;
+</span></span><span style=display:flex><span>            }
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>using</span> (<span style=color:#66d9ef>await</span> _lock.WriteLockAsync(cancellationToken))
+</span></span><span style=display:flex><span>        {
+</span></span><span style=display:flex><span>            <span style=color:#75715e>// Double-check in case another thread added the value</span>
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>if</span> (_cache.TryGetValue(key, <span style=color:#66d9ef>out</span> <span style=color:#66d9ef>string</span> <span style=color:#66d9ef>value</span>))
+</span></span><span style=display:flex><span>            {
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>value</span>;
+</span></span><span style=display:flex><span>            }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>string</span> newValue = <span style=color:#66d9ef>await</span> valueFactory();
+</span></span><span style=display:flex><span>            _cache[key] = newValue;
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>return</span> newValue;
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>async</span> Task UpdateAsync(<span style=color:#66d9ef>string</span> key, <span style=color:#66d9ef>string</span> <span style=color:#66d9ef>value</span>, CancellationToken cancellationToken = <span style=color:#66d9ef>default</span>)
+</span></span><span style=display:flex><span>    {
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>using</span> (<span style=color:#66d9ef>await</span> _lock.WriteLockAsync(cancellationToken))
+</span></span><span style=display:flex><span>        {
+</span></span><span style=display:flex><span>            _cache[key] = <span style=color:#66d9ef>value</span>;
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p>And, a runsheet (atleast, for me) for these &lsquo;real-world&rsquo; use cases:</p><ol><li>Correct Lock Usage: We properly release locks using using statements, ensuring they&rsquo;re always released even if exceptions occur.</li><li>Double-Checked Locking: We first check under a read lock, then under a write lock, minimizing the time spent holding the more expensive write lock.</li><li>Async Operations: Both reading and writing support asynchronous operations, crucial for maintaining responsiveness in real-world applications.</li><li>Cancellation Support: All methods accept a CancellationToken, allowing operations to be cancelled gracefully.</li></ol><h3 id=lock-free-algorithms-living-on-the-edge>Lock-Free Algorithms: Living on the Edge</h3><p>For the truly brave (or foolhardy), lock-free algorithms offer the promise of high performance without the overhead of locks. But beware, here be dragons.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-csharp data-lang=csharp><span style=display:flex><span><span style=color:#66d9ef>using</span> System;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>using</span> System.Threading;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>LockFreeStack</span>&lt;T&gt;
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Node</span>
+</span></span><span style=display:flex><span>    {
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>public</span> T Value;
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>public</span> Node Next;
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>int</span> Version;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>public</span> Node(T <span style=color:#66d9ef>value</span>, Node next, <span style=color:#66d9ef>int</span> version)
+</span></span><span style=display:flex><span>        {
+</span></span><span style=display:flex><span>            Value = <span style=color:#66d9ef>value</span>;
+</span></span><span style=display:flex><span>            Next = next;
+</span></span><span style=display:flex><span>            Version = version;
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>private</span> Node _head;
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>long</span> _operationCount;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>void</span> Push(T <span style=color:#66d9ef>value</span>)
+</span></span><span style=display:flex><span>    {
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>var</span> newNode = <span style=color:#66d9ef>new</span> Node(<span style=color:#66d9ef>value</span>, <span style=color:#66d9ef>null</span>, <span style=color:#ae81ff>0</span>);
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>while</span> (<span style=color:#66d9ef>true</span>)
+</span></span><span style=display:flex><span>        {
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>var</span> oldHead = _head;
+</span></span><span style=display:flex><span>            newNode.Next = oldHead;
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>if</span> (Interlocked.CompareExchange(<span style=color:#66d9ef>ref</span> _head, newNode, oldHead) == oldHead)
+</span></span><span style=display:flex><span>            {
+</span></span><span style=display:flex><span>                Interlocked.Increment(<span style=color:#66d9ef>ref</span> _operationCount);
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>return</span>;
+</span></span><span style=display:flex><span>            }
+</span></span><span style=display:flex><span>            Thread.Yield();
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>bool</span> TryPop(<span style=color:#66d9ef>out</span> T result)
+</span></span><span style=display:flex><span>    {
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>while</span> (<span style=color:#66d9ef>true</span>)
+</span></span><span style=display:flex><span>        {
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>var</span> oldHead = _head;
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>if</span> (oldHead == <span style=color:#66d9ef>null</span>)
+</span></span><span style=display:flex><span>            {
+</span></span><span style=display:flex><span>                result = <span style=color:#66d9ef>default</span>;
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>false</span>;
+</span></span><span style=display:flex><span>            }
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>var</span> newHead = oldHead.Next;
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>if</span> (Interlocked.CompareExchange(<span style=color:#66d9ef>ref</span> _head, newHead, oldHead) == oldHead)
+</span></span><span style=display:flex><span>            {
+</span></span><span style=display:flex><span>                result = oldHead.Value;
+</span></span><span style=display:flex><span>                Interlocked.Increment(<span style=color:#66d9ef>ref</span> _operationCount);
+</span></span><span style=display:flex><span>                <span style=color:#75715e>// Ensure the node can&#39;t be reused until all ongoing operations that might have seen it complete</span>
+</span></span><span style=display:flex><span>                SpinWait.SpinUntil(() =&gt; Volatile.Read(<span style=color:#66d9ef>ref</span> _operationCount) % <span style=color:#ae81ff>2</span> == <span style=color:#ae81ff>0</span>);
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>true</span>;
+</span></span><span style=display:flex><span>            }
+</span></span><span style=display:flex><span>            Thread.Yield();
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>long</span> OperationCount =&gt; Volatile.Read(<span style=color:#66d9ef>ref</span> _operationCount);
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p>And, the runsheet here (again, atleast for me):</p><ol><li>ABA Problem Mitigation!</li><li>Operation Counting: The <code>_operationCount</code> field keeps track of the number of push and pop operations. This can be useful for monitoring and debugging purposes.</li><li>Memory Ordering: Use <code>Volatile.Read</code> to ensure proper memory ordering when reading the operation count.</li><li>Backoff Strategy: Use <code>Thread.Yield()</code> instead of busy-waiting, which can improve performance in high-contention scenarios by allowing other threads to make progress.</li><li>Safe Memory Reclamation: The <code>SpinWait.SpinUntil</code> in TryPop ensures that a popped node isn&rsquo;t immediately reused, preventing potential issues with ongoing operations.</li></ol><p>A potential application for lock-free algorithms? A logging system! Nothing can get busier, imho.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-csharp data-lang=csharp><span style=display:flex><span><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>HighPerformanceLogger</span>
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>readonly</span> LockFreeStack&lt;LogEntry&gt; _logBuffer = <span style=color:#66d9ef>new</span> LockFreeStack&lt;LogEntry&gt;();
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>readonly</span> Thread _logWriterThread;
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>volatile</span> <span style=color:#66d9ef>bool</span> _isRunning = <span style=color:#66d9ef>true</span>;
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>readonly</span> AutoResetEvent _newLogEvent = <span style=color:#66d9ef>new</span> AutoResetEvent(<span style=color:#66d9ef>false</span>);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>public</span> HighPerformanceLogger()
+</span></span><span style=display:flex><span>    {
+</span></span><span style=display:flex><span>        _logWriterThread = <span style=color:#66d9ef>new</span> Thread(LogWriterLoop);
+</span></span><span style=display:flex><span>        _logWriterThread.Start();
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>void</span> Log(<span style=color:#66d9ef>string</span> message, LogLevel level)
+</span></span><span style=display:flex><span>    {
+</span></span><span style=display:flex><span>        _logBuffer.Push(<span style=color:#66d9ef>new</span> LogEntry(message, level, DateTime.UtcNow));
+</span></span><span style=display:flex><span>        _newLogEvent.Set();
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>void</span> LogWriterLoop()
+</span></span><span style=display:flex><span>    {
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>while</span> (_isRunning)
+</span></span><span style=display:flex><span>        {
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>if</span> (_logBuffer.TryPop(<span style=color:#66d9ef>out</span> <span style=color:#66d9ef>var</span> logEntry))
+</span></span><span style=display:flex><span>            {
+</span></span><span style=display:flex><span>                <span style=color:#75715e>// In a real implementation, we&#39;d write to a file or database</span>
+</span></span><span style=display:flex><span>                Console.WriteLine(<span style=color:#e6db74>$&#34;[{logEntry.Timestamp:yyyy-MM-dd HH:mm:ss.fff}] [{logEntry.Level}] {logEntry.Message}&#34;</span>);
+</span></span><span style=display:flex><span>            }
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>else</span>
+</span></span><span style=display:flex><span>            {
+</span></span><span style=display:flex><span>                <span style=color:#75715e>// Wait for a new log entry or a timeout. We coulduse `sleep` instead, well.. I don&#39;t like ... sleep, in programming contenxt only though :p</span>
+</span></span><span style=display:flex><span>                _newLogEvent.WaitOne(<span style=color:#ae81ff>100</span>);
+</span></span><span style=display:flex><span>            }
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>// Process any remaining logs after shutdown signal</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>while</span> (_logBuffer.TryPop(<span style=color:#66d9ef>out</span> <span style=color:#66d9ef>var</span> logEntry))
+</span></span><span style=display:flex><span>        {
+</span></span><span style=display:flex><span>            Console.WriteLine(<span style=color:#e6db74>$&#34;[{logEntry.Timestamp:yyyy-MM-dd HH:mm:ss.fff}] [{logEntry.Level}] {logEntry.Message}&#34;</span>);
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>void</span> Shutdown()
+</span></span><span style=display:flex><span>    {
+</span></span><span style=display:flex><span>        _isRunning = <span style=color:#66d9ef>false</span>;
+</span></span><span style=display:flex><span>        _newLogEvent.Set(); <span style=color:#75715e>// Ensure the log writer thread wakes up</span>
+</span></span><span style=display:flex><span>        _logWriterThread.Join();
+</span></span><span style=display:flex><span>        _newLogEvent.Dispose();
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>enum</span> LogLevel
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>    Debug,
+</span></span><span style=display:flex><span>    Info,
+</span></span><span style=display:flex><span>    Warning,
+</span></span><span style=display:flex><span>    Error,
+</span></span><span style=display:flex><span>    Critical
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><ol><li>Event-Based Waiting: This allows the log writer thread to efficiently wait for new log entries without consuming CPU cycles.</li><li>Decoupled Log Writing: The <code>LogWriterLoop</code> runs on a separate thread, processing log entries asynchronously. This ensures that logging doesn&rsquo;t slow down the main application threads.</li><li>Low-Latency: The &rsquo;lock-free&rsquo; nature of our stack means that logging operations (pushes) complete very quickly, minimizing the impact on latency-sensitive operations &ndash; like, whatever it is your company does to save the world!</li><li>Graceful Shutdown: The <code>Shutdown</code> method demonstrates how to safely stop the logging thread, ensuring all logs are processed before the application exits.</li></ol><h1 id=so-what-am-i-saying>So, what am I saying?</h1><p>imho, here&rsquo;s a checklist for the discerning engineer:</p><ol><li>Know Your Tools: Understand the differences between mutexes, semaphores, and other synchronization primitives.</li><li>Profile, Profile, Profile: Don&rsquo;t guess at performance bottlenecks. Use profiling tools to identify real issues.</li><li>Keep It Simple: Complex synchronization schemes are bug magnets. Simplify where possible. Please&mldr; KISS!</li><li>Test Thoroughly: Concurrency bugs are notoriously hard to reproduce. Sometimes impossible to reproduce. So, be ready for 3am calls &ndash; Ah, im sure it will go wrong.. Yup, very very sure&mldr;</li><li>Review and Refactor: Regularly review your concurrent code. What made sense yesterday might be a nightmare today.</li></ol><p>&mldr;[spiderman quote playing in the background]&mldr; Use these tools wisely, and please &ldquo;understand&rdquo; the difference before &rsquo;trying&rsquo; parallelism/threading/concurrency and may your code be ever race-condition free.</p></div><div class=post-footer></div></article></main></body></html>
