@@ -27,6 +27,12 @@ jobs:
       - name: Build
         run: hugo --minify
 
+      - name: Debug - List public directory
+        run: ls -R public
+
+      - name: Debug - Check for Mermaid script
+        run: grep -R "mermaid.min.js" public
+
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         if: github.ref == 'refs/heads/main'
