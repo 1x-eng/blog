@@ -274,8 +274,6 @@ print(f"GC counts after creating many objects: {gc.get_count()}")
 
 ## In Conclusion: A Mirror for the Masses
 
-So, next time you’re tempted to complain about Python’s performance, maybe take a moment for some self-reflection. Is it really Python that’s slow, or could it be that the fault lies not in the stars, but in ourselves?
+So, next time you’re tempted to complain about Python’s performance, maybe take a moment for some self-reflection. Consider what ‘side effects’ your code might be causing, which could be the real culprit.
 
-Python has made a heroic effort to simplify memory management. If your code still runs like a sloth in molasses, it might be time to look in the mirror and ask if the problem is right in front of the keyboard.
-
-Remember, a poor craftsman blames their tools. In Python’s world, that tool is often sharper than its user. So before you proclaim, “Python is slow,” ask yourself: Are you truly justified in casting that stone, or should you be hitting the books instead of bashing Python? 🤔💻
+Python has made a heroic effort to simplify memory management. If your code still runs like a sloth in molasses, sure, no tool is ever perfect, but are you using it ‘properly’? Maybe it’s time to hit the books. Just saying...🤔💻
