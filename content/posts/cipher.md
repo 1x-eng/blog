@@ -15,7 +15,7 @@ This observation sparked an inquiry: what if we could have something that helps 
 
 This thinking led to Cipher ✍️, a personal space for digital reflection. It's not about being more productive in the usual way, but about having a focused tool to explore our inner thoughts and experiences. Over the past few months, Cipher has become a regular part of how I try to make sense of the everyday flow of life.
 
-![Cipher interface](/cipher.png)
+![Cipher - A Personal Digital Reflection Tool](https://i.ibb.co/L6tG1KW/Cipher.png)
 
 ## The Basic Idea ✨
 
