@@ -1,6 +1,6 @@
 ---
 title: "Journal, but connect the dots"
-date: 2024-07-27T10:42:07+10:00
+date: 2025-01-19T09:36:09+10:00
 draft: false
 ---
 
