@@ -5,6 +5,11 @@ theme = "m10c"
 enableEmoji = true
 googleAnalytics = "G-0Q0C7S8K6Z"
 
+[build]
+  [build.processing]
+    [build.processing.css]
+      method = "sass"
+      options = "expanded"
 
 [markup]
   [markup.goldmark]
