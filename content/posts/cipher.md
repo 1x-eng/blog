@@ -6,7 +6,7 @@ draft: false
 
 # Noticing Patterns in My Own Thoughts: An Exploration with Cipher 🧩
 
-> When I'm still, patterns sometimes emerge. Seeing those patterns can lead to a quieter understanding. 🤔
+> Within stillness, patterns emerge; within patterns, a quiet understanding.
 
 There are times when life feels like a rush, a constant flow of information and tasks. It's easy to find myself just reacting, moving from one thing to the next without much pause. I sometimes wonder if I'm just skimming the surface, missing connections and not fully understanding what's happening around me, or even within my own thoughts.
 
