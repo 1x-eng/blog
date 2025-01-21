@@ -1,7 +1,7 @@
 ---
 title: "Journal, but connect the dots"
-date: 2025-01-19T09:36:09+10:00
-draft: true
+date: 2025-01-21T09:36:09+10:00
+draft: false
 ---
 
 # Introducing Cipher 💡
