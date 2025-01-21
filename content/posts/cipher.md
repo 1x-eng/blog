@@ -1,5 +1,5 @@
 ---
-title: "Cipher - The Space Between Notes"
+title: "The Space Between Notes"
 date: 2025-01-21T09:36:09+10:00
 draft: false
 ---
