@@ -13,7 +13,7 @@ The modern cadence of our lives often feels like a relentless current 🏃‍♀
 
 This observation sparked an inquiry: what if we could have something that helps us see what we might otherwise miss, a silent partner in our own thinking?  It wasn't about optimization or increased output, but about fostering a deeper self-awareness. This initial need sparked the development of Cipher ✍️, a personal environment for digital reflection.
 
-This thinking led to Cipher ✍️, a personal space for digital reflection. It's not about productivity tools, but about having a cognitive companion that helps surface meaningful connections we might miss amid life's constant demands. Over the past few months, Cipher has become a regular part of how I try to make sense of the everyday flow of life.
+This thinking led to Cipher ✍️, a personal space for digital reflection. It's not just about productivity tools, but about creating a framework that helps surface meaningful connections we might miss amid life's constant demands. Over the past few months, Cipher has become a regular part of how I try to make sense of the everyday flow of life.
 
 ![Cipher - A Personal Digital Reflection Tool](https://i.ibb.co/L6tG1KW/Cipher.png)
 
@@ -55,7 +55,7 @@ What began as a simple journaling tool gradually became something more interesti
 - A way to see patterns in your thoughts and experiences
 - A patient helper that connects seemingly different ideas
 - A tool that grows and changes with you
-- A companion for understanding your own story
+- A framework for understanding your own story
 
 ## Inviting You to Take a Look 🚪
 
