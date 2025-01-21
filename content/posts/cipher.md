@@ -1,5 +1,5 @@
 ---
-title: "Journal, but connect the dots"
+title: "Journal, but have 'someone' connect the dots"
 date: 2025-01-21T09:36:09+10:00
 draft: false
 ---
