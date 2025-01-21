@@ -64,7 +64,7 @@ This isn't about widespread adoption or commercial aspirations. It's about shari
 
 ## Keeping Your Thoughts Private 🔒
 
-Your reflections are deeply personal. Cipher is built with this in mind, and we're committed to keeping your thoughts private and under your control. Every technical decision, from how it's built to where the data is stored, prioritizes the security and privacy of your personal reflections. You can find all the details about our privacy approach in our [Cipher Privacy Policy](https://cipher.sysapp.dev/privacy).
+Your reflections are deeply personal. Cipher is built with this in mind, and we're committed to keeping your thoughts private and under your control. Every technical decision, from how it's built to where the data is stored, prioritizes the security and privacy of your personal reflections. You can find all the details about our privacy approach in our [privacy policy](https://cipher.sysapp.dev/privacy).
 
 ---
 
