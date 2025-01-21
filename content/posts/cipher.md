@@ -60,11 +60,11 @@ Here's what I hope Cipher might be:
 
 ## If This Resonates 🤝
 
-This isn't about widespread adoption or any commercial goals. It's about sharing something that came from a personal need and has been quietly helpful in my own experience. If the idea of a subtle aid for noticing patterns in your own thoughts sounds potentially interesting, you're welcome to explore Cipher through a small [beta program](https://cipher.sysapp.dev). I'm keeping the group small to allow for thoughtful development and refinement based on genuine feedback. My hope is simply that it might be valuable to others who are curious about exploring their own thoughts in this way.
+This isn't about widespread adoption or any commercial goals. It's about sharing something that came from a personal need and has been quietly helpful in my own experience. If the idea of a subtle aid for noticing patterns in your own thoughts sounds potentially interesting, you're welcome to explore Cipher through a small <a href="https://cipher.sysapp.dev" target="_blank" rel="noopener noreferrer">beta program</a>. I'm keeping the group small to allow for thoughtful development and refinement based on genuine feedback. My hope is simply that it might be valuable to others who are curious about exploring their own thoughts in this way.
 
 ## On Keeping Thoughts Private 🔒
 
-My own reflections are deeply personal, and Cipher is built with this in mind. I'm committed to keeping your thoughts private and under your control. Every technical decision, from how it's built to where the data is stored, prioritizes the security and privacy of your personal reflections. You can find details in the [privacy policy](https://cipher.sysapp.dev/privacy).
+My own reflections are deeply personal, and Cipher is built with this in mind. I'm committed to keeping your thoughts private and under your control. Every technical decision, from how it's built to where the data is stored, prioritizes the security and privacy of your personal reflections. You can find details in the <a href="https://cipher.sysapp.dev/privacy" target="_blank" rel="noopener noreferrer">privacy policy</a>.
 
 ---
 
