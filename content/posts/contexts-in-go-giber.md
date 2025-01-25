@@ -1,5 +1,5 @@
 ---
-title: "Contexts in Go Giber"
+title: "Contexts in Go Fiber"
 date: 2025-01-25T15:38:09+11:00
 draft: false
 ---
@@ -60,12 +60,31 @@ sequenceDiagram
 - 4 CPU cores
 - Fiber v2 vs Gin v1.10
 
-### Results:
-| Metric | Fiber (Unsafe) | Fiber (Safe) | Gin |
-|--------------|----------------|--------------|-------|
-| Req/Sec | 112k | 98k | 89k |
-| Memory Alloc | 45MB | 62MB | 75MB |
-| Data Leaks | 1.2% | 0% | 0% |
+### Results: 🎯
+
+#### 🚀 Request Performance
+```plaintext
+Req/Sec
+├── Fiber (Unsafe) : 112k
+├── Fiber (Safe)   : 98k
+└── Gin           : 89k
+```
+
+#### 💾 Memory Usage
+```plaintext
+Memory Allocation
+├── Fiber (Unsafe) : 45MB
+├── Fiber (Safe)   : 62MB
+└── Gin           : 75MB
+```
+
+#### 🔒 Security Impact
+```plaintext
+Data Leaks
+├── Fiber (Unsafe) : 1.2%
+├── Fiber (Safe)   : 0%
+└── Gin           : 0%
+```
 
 #### The performance tax for safety: 12% slower, 37% more memory - cheap insurance 💰
 
