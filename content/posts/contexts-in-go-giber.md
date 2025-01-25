@@ -58,7 +58,7 @@ sequenceDiagram
 ### Test Setup:
 - 10k requests/sec load test
 - 4 CPU cores
-- Fiber v2 vs Gin v1.8
+- Fiber v2 vs Gin v1.10
 
 ### Results:
 | Metric | Fiber (Unsafe) | Fiber (Safe) | Gin |
