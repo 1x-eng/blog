@@ -20,6 +20,12 @@ googleAnalytics = "G-0Q0C7S8K6Z"
     style = "monokai"
     lineNos = true
 
+[menu]
+  [[menu.main]]
+    name = "Home"
+    url = "/"
+    weight = 1
+
 [params]
   author = "Pruthvi Kumar"
   description = "confessions of a serial key puncher: the life and times of a coder."
