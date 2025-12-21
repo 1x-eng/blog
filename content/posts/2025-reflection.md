@@ -49,7 +49,7 @@ on the hardware front, i built a verandah.
 
 ![verandah](../../static/verandah.jpg)
 
-i'm not a diy person. never have been. the mere thought of measuring twice, cutting once, and then realizing i measured wrong anyway - that's my default state. but this year, i pushed through. no idea where the motivation came from, but i'm glad it showed up. couldn't be happier with how it turned out.
+i'm not a DIY person. never have been. the mere thought of measuring twice, cutting once, and then realizing i measured wrong anyway - that's my default state. but this year, i pushed through. no idea where the motivation came from, but i'm glad it showed up. couldn't be happier with how it turned out.
 
 and while we're on things that made me stop scrolling - this photo by [andrew mccarthy](https://x.com/AJamesMcCarthy/status/1968658340679921925):
 
