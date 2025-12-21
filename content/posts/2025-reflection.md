@@ -8,7 +8,7 @@ tags: ["reflection", "2025", "career", "parenthood"]
 ## 2025 ✅
 sayonara 2025 👋. a year of oscillation between high-frequency work and low-frequency living.
 
-![bye 2025](../../static/bye-2025.JPG)
+![bye 2025](/blog/bye-2025.JPG)
 
 
 ## work
@@ -33,7 +33,7 @@ it's been a year of moments that will definitely make the final 7-minute neural 
 
 my daughter turned one a few weeks ago.
 
-![hbd my baby](../../static/hbd_mybaby.jpg)
+![hbd my baby](/blog/hbd_mybaby.jpg)
 
 we've had a combination of awesome, nerve-wracking, and anxious moments as amateur parents in a nuclear family. i've dealt with nephews and nieces sure... but when it's your own, as vouched by many already, i admit that it's a different ball game. as clichéd as it sounds, the protective switch flips, and there is no match for it.
 
@@ -47,13 +47,13 @@ we are choosing to opt out.
 
 on the hardware front, i built a verandah.
 
-![verandah](../../static/verandah.jpg)
+![verandah](/blog/verandah.jpg)
 
 i'm not a DIY person. never have been. the mere thought of measuring twice, cutting once, and then realizing i measured wrong anyway - that's my default state. but this year, i pushed through. no idea where the motivation came from, but i'm glad it showed up. couldn't be happier with how it turned out.
 
 and while we're on things that made me stop scrolling - this photo by [andrew mccarthy](https://x.com/AJamesMcCarthy/status/1968658340679921925):
 
-![whoa i'm jealous](../../static/whoa_imjealous.jpg)
+![whoa i'm jealous](/blog/whoa_imjealous.jpg)
 
 i don't know what it takes to capture something like this, but i'm jealous of the skill. absolutely stunning. hats off.
 
@@ -74,11 +74,11 @@ i build these not to sell, but to survive the entropy.
 
 **books**: reading is my defrag routine. here's the full stack from 2025:
 
-![2025 books](../../static/2025_books.jpg)
+![2025 books](/blog/2025_books.jpg)
 
 and then there's the annual re-reads. three years running now, i force myself through these cover to cover. not because i forgot what's in them, but because knowing and doing are different muscles (imo).
 
-![cover to cover repeats](../../static/cover_to_cover_repeats.jpg)
+![cover to cover repeats](/blog/cover_to_cover_repeats.jpg)
 
 if your career intersects with mine (distributed systems, engineering leadership, or the perpetual existential crisis of scaling teams and tech simultaneously), you might find these worth a loop too.
 
