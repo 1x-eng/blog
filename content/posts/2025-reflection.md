@@ -21,7 +21,7 @@ i must admit, my understanding of edtech was… naive. i thought it circled most
 
 as a first time parent to a baby girl, the resolution of this problem changes. speaking strictly as an outsider (and to be clear, i'm not here to earn brownie points with my employer; i've outgrown the need to sugarcoat) i have a newfound respect for this problem space. as in, it goes beyond the traditional problems technology companies usually solve. and i don't mean those problems are "lesser," but i am at a stage in life where "value add" means something very different to me than it did in my 20s. keeping the digital world safe for kids hits a frequency that optimizing ad clicks or selling widgets just doesn't anymore. the absolute worst thing we can do is: expose the eager, vulnerable young minds to the awful corners of the internet. so to the folks across linewize, smoothwall, and qustodio: thanks is an understatement. not as an employee, but as a parent.
 
-on the technical front, it's been a refresh. before this, my experience with MiTM was mostly limited to hobby projects or tinkering with DNS servers (and blaming DNS for every hairy p0 incident—because it's always bloody dns, right?) or setting cloudflare's 1.1.1.1 for privacy was about the extent of it.
+on the technical front, it's been a refresh. before this, my experience with MiTM was mostly limited to hobby projects or tinkering with DNS servers (and blaming DNS for every hairy p0 incident.. because it's always bloody dns, right?) or setting cloudflare's 1.1.1.1 for privacy was about the extent of it.
 
 but getting into the nuts and bolts of a filter product at this scale (circa 27 million users) is a different beast. it's an amalgamation of low-level interceptors, packet sniffing, chromium extensions, and dns filtering. it's not easy to create an effective filter that works hard to keep the bad stuff away from toddlers. and, to be part of this cohort has been rewarding. the engineering here is everything but mundane.
 
@@ -45,7 +45,7 @@ this is also the year i finally got sick of the "social" platforms. there is som
 
 we are choosing to opt out.
 
-on the hardware front, i built a verandah.
+on the hardware front, my wife & i took on a new project to build a verandah.
 
 ![verandah](/blog/verandah.jpg)
 
@@ -85,7 +85,7 @@ if your career intersects with mine (distributed systems, engineering leadership
 
 ## ai
 
-here's the deal. as someone who has historically side-eyed every tech fad with the enthusiasm of a cat being offered a bath, i can't ignore this one anymore. the [skepticism is warranted](https://news.ycombinator.com/item?id=43721040). [techreviewer reports](https://techreviewer.co/blog/ai-in-software-development-2025-from-exploration-to-accountability-a-global-survey-analysis) that favorable views of AI tools dropped from 70% to ~60% between 2023 and 2025, and 46% of developers don't trust AI output accuracy. but the productivity gains, even modest, are measurable. afaict, this isn't hype anymore - it's a tool that demands fluency, not faith.
+here's the deal. as someone who has historically side-eyed every tech fad with the enthusiasm of a cat being offered a bath, i can't ignore this one anymore. the [skepticism is warranted](https://news.ycombinator.com/item?id=43721040). [techreviewer reports](https://techreviewer.co/blog/ai-in-software-development-2025-from-exploration-to-accountability-a-global-survey-analysis) that favorable views of AI tools dropped from some 70 +% to ~60% between 2023 and 2025, and about 46% of developers don't trust AI output accuracy (im one of them for sure). but the productivity gains, even modest, are measurable. afaict, this isn't hype anymore - it's a tool that demands fluency, not faith.
 
 that said, i'm allergic to how this has become a [hammer looking for nails](https://www.technologyreview.com/2025/12/15/1129174/the-great-ai-hype-correction-of-2025/). not every problem needs an llm thrown at it. the [2025 "hype correction"](https://www.uctoday.com/collaboration/its-time-for-a-2025-ai-heat-check-is-it-delivering-or-overhyped/) is real - companies rushed to deploy without strategy, and now the hangover is setting in. chatgpt, claude, and friends don't "think" - they regurgitate patterns with supreme confidence. they drift, hallucinate, and have no innate sense of why they offer one answer over another. that's not a tool for every nail. that's a tool for specific nails, wielded by someone who knows the difference.
 
