@@ -100,4 +100,5 @@ but here's where i'll give credit: [guided learning](https://medium.com/prompt-e
 ---
 
 2025. done.
+
 a year of signal, noise, and the attempt to distinguish between the two.
